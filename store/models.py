@@ -1,17 +1,14 @@
-from django.db import models
+from tkinter.constants import CASCADE
 
-class Category(models.Model):
-    category_name = models.CharField(max_length=16)
+from django.db import models
+from django.db.models import TextField
+
+
 class Product(models.Model):
-    product_name = models.CharField(max_length=16)
+    title = models.CharField(max_length=14)
     description = models.TextField()
-    price = models.PositiveIntegerField(default=0)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    created_date =  models.DateField(auto_now_add=True)
-    have = models.BooleanField(default=True)
+    price=  models.PositiveIntegerField()
 
 class Comment(models.Model):
-    name  =  models.CharField(max_length=16)
-    text =  models.TextField()
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True)
+    comment_text = models.TextField()
+    orm = models.ForeignKey(Product, on_delete=CASCADE)
